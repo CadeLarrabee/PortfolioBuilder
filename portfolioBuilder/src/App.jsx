@@ -24,21 +24,25 @@ function App() {
       <div className="TitleWrapper">
         <h1 className="Title">Add information to generate your CV!</h1>
       </div>
-      <div className="card">
-        <button onClick={toggleChoices}>+</button>
-        {showChoices && <GenerateChoiceSection addSection={addSection} />}
-        {sections.map((section) => (
-          <GenerateSection
-            key={section.id}
-            section={section}
-            updateSectionData={(data) => {
-              const updatedSections = sections.map((s) =>
-                s.id === section.id ? { ...s, data } : s
-              );
-              setSections(updatedSections);
-            }}
-          />
-        ))}
+      <div className="bodyWrapper">
+        <div className="choicesWrapper">
+          <button onClick={toggleChoices}>+</button>
+        </div>
+        <div className="sectionsWrapper">
+          {showChoices && <GenerateChoiceSection addSection={addSection} />}
+          {sections.map((section) => (
+            <GenerateSection
+              key={section.id}
+              section={section}
+              updateSectionData={(data) => {
+                const updatedSections = sections.map((s) =>
+                  s.id === section.id ? { ...s, data } : s
+                );
+                setSections(updatedSections);
+              }}
+            />
+          ))}
+        </div>
       </div>
       <div>
         <button onClick={handleCVSubmit}>Generate CV</button>
@@ -92,25 +96,30 @@ function GenerateNameField({ updateSectionData }) {
   };
 
   return (
-    <div className="inputWrapper">
-      <input
-        className="firstName"
-        placeholder="First name"
-        value={firstName}
-        onChange={(e) => {
-          setFirstName(e.target.value);
-          handleChange();
-        }}
-      />
-      <input
-        className="lastName"
-        placeholder="Last name"
-        value={lastName}
-        onChange={(e) => {
-          setLastName(e.target.value);
-          handleChange();
-        }}
-      />
+    <div className="wrapper">
+      <div className="titleWrapper">
+        <h1 class="instructionText">Enter your name:</h1>
+      </div>
+      <div className="inputWrapper">
+        <input
+          className="firstName"
+          placeholder="First name"
+          value={firstName}
+          onChange={(e) => {
+            setFirstName(e.target.value);
+            handleChange();
+          }}
+        />
+        <input
+          className="lastName"
+          placeholder="Last name"
+          value={lastName}
+          onChange={(e) => {
+            setLastName(e.target.value);
+            handleChange();
+          }}
+        />
+      </div>
     </div>
   );
 }
@@ -124,26 +133,31 @@ function GenerateEducationField({ updateSectionData }) {
   };
 
   return (
-    <div className="inputWrapper">
-      <input
-        className="School"
-        placeholder="School Name"
-        value={educationName}
-        onChange={(e) => {
-          setEducationName(e.target.value);
-          handleChange();
-        }}
-      />
-      <div>
+    <div className="wrapper">
+      <div class="titleWrapper">
+        <h1 className="instructionText">Enter your education</h1>
+      </div>
+      <div className="inputWrapper">
         <input
-          className="Graduation"
-          placeholder="Graduation Year"
-          value={educationYear}
+          className="School"
+          placeholder="School Name"
+          value={educationName}
           onChange={(e) => {
-            setGraduationYear(e.target.value);
+            setEducationName(e.target.value);
             handleChange();
           }}
         />
+        <div>
+          <input
+            className="Graduation"
+            placeholder="Grad Year"
+            value={educationYear}
+            onChange={(e) => {
+              setGraduationYear(e.target.value);
+              handleChange();
+            }}
+          />
+        </div>
       </div>
     </div>
   );
@@ -159,37 +173,42 @@ function GenerateWorkField({ updateSectionData }) {
   };
 
   return (
-    <div className="inputWrapper">
-      <div>
-        <input
-          className="work"
-          placeholder="Job Title"
-          value={workTitle}
-          onChange={(e) => {
-            setWorkTitle(e.target.value);
-            handleChange();
-          }}
-        />
-        <input
-          className="Job"
-          placeholder="2000-2007"
-          value={workYear}
-          onChange={(e) => {
-            setWorkYear(e.target.value);
-            handleChange();
-          }}
-        />
+    <div className="wrapper">
+      <div class="titleWrapper">
+        <h1 className="instructionText">Enter your experience</h1>
       </div>
-      <div>
-        <input
-          className="JobDesc"
-          placeholder="a quick description"
-          value={workDesc}
-          onChange={(e) => {
-            setWorkDesc(e.target.value);
-            handleChange();
-          }}
-        />
+      <div className="inputWrapper">
+        <div>
+          <input
+            className="work"
+            placeholder="Job Title"
+            value={workTitle}
+            onChange={(e) => {
+              setWorkTitle(e.target.value);
+              handleChange();
+            }}
+          />
+          <input
+            className="Job"
+            placeholder="2000-2007"
+            value={workYear}
+            onChange={(e) => {
+              setWorkYear(e.target.value);
+              handleChange();
+            }}
+          />
+        </div>
+        <div>
+          <input
+            className="JobDesc"
+            placeholder="a quick description"
+            value={workDesc}
+            onChange={(e) => {
+              setWorkDesc(e.target.value);
+              handleChange();
+            }}
+          />
+        </div>
       </div>
     </div>
   );
